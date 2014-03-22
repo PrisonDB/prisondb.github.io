@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://github.com/acao/bop-api-docs/dist/bopapidocs.html</loc>
+    <lastmod>2014-03-22T20:32:59.511Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://github.com/acao/bop-api-docs/dist/index.html</loc>
+    <lastmod>2014-03-22T20:32:59.512Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>

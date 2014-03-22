@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BOP API Docs | PrisonDB</title>
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/docs.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body data-spy="scroll" data-target="#sidebar-nav">
+
+    
+<!-- Fixed navbar -->
+<div class="navbar-default navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">PrisonDB</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <!-- you can exclude pages using {{#isnt}} helper: {{#isnt data.title 'Blog'}} -->
+        
+        <li class="active">
+          <a href="bopapidocs.html">BOP API Docs</a>
+        </li>
+        
+        <li>
+          <a href="index.html">Home</a>
+        </li>
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+
+
+    <div class="container theme-showcase" role="main">
+
+      
+<div class="container">
+<div class="page-header"><h1>BOP API Docs</h1></div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="sidebar affix" data-spy="affix" data-offset-top="120" data-offset-bottom="200">
+        <div id="sidebar-nav" class="panel panel-default">
+          <ul class="nav nav-pills nav-stacked">
+           
+              <li><a href="#intro"> Introduction </a></li>
+            
+              <li><a href="#disclaimer"> Disclaimer </a></li>
+            
+              <li><a href="#location"> Location </a></li>
+            
+              <li><a href="#locations"> Locations </a></li>
+            
+              <li><a href="#inmateloc"> Inmate Locator </a></li>
+            
+              <li><a href="#othernotes"> Other Notes </a></li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+    
+      <h2 class="page-header" id="intro">Introduction</h2>
+      <p>Keep in mind, I&#39;m still not sure whether this API is truly public or not.  I&#39;m just going to document it, so please use at your own risk. These docs are merely an experiment in documenting an API from afar, so it&#39;s kind of a fun reverse engineering project.</p>
+<p>I can only hope you use it for good, and not to profit further from prisoners or the prison system, but it&#39;s not up to me to tell you how to use this - or whether you should at all!</p>
+
+    
+      <h2 class="page-header" id="disclaimer">Disclaimer</h2>
+      <p>I don&#39;t pretend to own or have the rights to any data from this api or the api itself.</p>
+<h1>USE THIS API AT YOUR OWN RISK</h1>
+
+    
+      <h2 class="page-header" id="location">Location</h2>
+      <p>Returns data about specific bop facilities, using the facility code</p>
+<h3 id="endpoint-">Endpoint:</h3>
+<pre> http://www.bop.gov/PublicInfo/execute/phyloc </pre>
+
+<h3 id="params-">Params:</h3>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>todo</td>
+<td>use query. again, not sure what this does</td>
+</tr>
+<tr>
+<td>output</td>
+<td>the type of output. json, xml</td>
+</tr>
+<tr>
+<td>code</td>
+<td>The three character prison code. Required!</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-">Example:</h3>
+<pre> http://www.bop.gov/PublicInfo/execute/phyloc?todo=query&output=json&code=HER </pre>
+
+<h4 id="response-object-">Response Object:</h4>
+<pre><code class="language-JSON">
+{
+    &quot;Visiting&quot;: [
+        {
+            &quot;code&quot;: &quot;her&quot;,
+            &quot;name&quot;: &quot;HERLONG FCI&quot;,
+            &quot;visitingNotes&quot;: &quot;These are typical visiting hours and may not cover all cases.  Please become familiar with the visiting policy which can be downloaded from the www.bop.gov website.&quot;,
+            &quot;street&quot;: &quot;741-925 ACCESS ROAD A-25&quot;,
+            &quot;city&quot;: &quot;HERLONG&quot;,
+            &quot;state&quot;: &quot;CA&quot;,
+            &quot;zipCode&quot;: &quot;96113&quot;,
+            &quot;areaCode&quot;: &quot;530&quot;,
+            &quot;number&quot;: &quot;827-8000&quot;,
+            &quot;visitDays&quot;: [
+                {
+                    &quot;code&quot;: &quot;her&quot;,
+                    &quot;notes&quot;: &quot; &quot;,
+                    &quot;camp&quot;: true,
+                    &quot;fsl&quot;: false,
+                    &quot;fdc&quot;: false,
+                    &quot;dayString&quot;: &quot;Sunday&quot;,
+                    &quot;day&quot;: 0,
+                    &quot;startTime&quot;: &quot;8:00 AM&quot;,
+                    &quot;endTime&quot;: &quot;3:00 PM&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;her&quot;,
+                    &quot;notes&quot;: &quot; &quot;,
+                    &quot;camp&quot;: false,
+                    &quot;fsl&quot;: false,
+                    &quot;fdc&quot;: false,
+                    &quot;dayString&quot;: &quot;Sunday&quot;,
+                    &quot;day&quot;: 0,
+                    &quot;startTime&quot;: &quot;8:00 AM&quot;,
+                    &quot;endTime&quot;: &quot;3:00 PM&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;her&quot;,
+                    &quot;notes&quot;: &quot; &quot;,
+                    &quot;camp&quot;: true,
+                    &quot;fsl&quot;: false,
+                    &quot;fdc&quot;: false,
+                    &quot;dayString&quot;: &quot;Saturday&quot;,
+                    &quot;day&quot;: 6,
+                    &quot;startTime&quot;: &quot;8:00 AM&quot;,
+                    &quot;endTime&quot;: &quot;3:00 PM&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;her&quot;,
+                    &quot;notes&quot;: &quot; &quot;,
+                    &quot;camp&quot;: false,
+                    &quot;fsl&quot;: false,
+                    &quot;fdc&quot;: false,
+                    &quot;dayString&quot;: &quot;Saturday&quot;,
+                    &quot;day&quot;: 6,
+                    &quot;startTime&quot;: &quot;8:00 AM&quot;,
+                    &quot;endTime&quot;: &quot;3:00 PM&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;her&quot;,
+                    &quot;notes&quot;: &quot; &quot;,
+                    &quot;camp&quot;: true,
+                    &quot;fsl&quot;: false,
+                    &quot;fdc&quot;: false,
+                    &quot;dayString&quot;: &quot;Federal Holiday&quot;,
+                    &quot;day&quot;: 7,
+                    &quot;startTime&quot;: &quot;8:00 AM&quot;,
+                    &quot;endTime&quot;: &quot;3:00 PM&quot;
+                },
+                {
+                    &quot;code&quot;: &quot;her&quot;,
+                    &quot;notes&quot;: &quot; &quot;,
+                    &quot;camp&quot;: false,
+                    &quot;fsl&quot;: false,
+                    &quot;fdc&quot;: false,
+                    &quot;dayString&quot;: &quot;Federal Holiday&quot;,
+                    &quot;day&quot;: 7,
+                    &quot;startTime&quot;: &quot;8:00 AM&quot;,
+                    &quot;endTime&quot;: &quot;3:00 PM&quot;
+                }
+            ]
+        }
+    ],
+    &quot;Messages&quot;: {},
+    &quot;Addresses&quot;: [
+        {
+            &quot;name&quot;: &quot;HERLONG FCI&quot;,
+            &quot;code&quot;: &quot;HER&quot;,
+            &quot;addressType&quot;: &quot;3&quot;,
+            &quot;addressTypeName&quot;: &quot;Inmate Mail/Parcels&quot;,
+            &quot;region&quot;: &quot;WXR&quot;,
+            &quot;street&quot;: &quot;P.O. BOX 800&quot;,
+            &quot;street2&quot;: &quot;&quot;,
+            &quot;city&quot;: &quot;HERLONG&quot;,
+            &quot;county&quot;: &quot;LASSEN&quot;,
+            &quot;state&quot;: &quot;CA&quot;,
+            &quot;zipCode&quot;: &quot;96113&quot;,
+            &quot;areaCode&quot;: &quot;&quot;,
+            &quot;number&quot;: &quot;&quot;,
+            &quot;faxAreaCode&quot;: &quot;&quot;,
+            &quot;faxNumber&quot;: &quot;&quot;,
+            &quot;faclTypeDescription&quot;: &quot;Federal Correctional Institution&quot;
+        },
+        {
+            &quot;name&quot;: &quot;HERLONG FCI&quot;,
+            &quot;code&quot;: &quot;HER&quot;,
+            &quot;addressType&quot;: &quot;6&quot;,
+            &quot;addressTypeName&quot;: &quot;Inmate Mail/Parcels - Camp&quot;,
+            &quot;region&quot;: &quot;WXR&quot;,
+            &quot;street&quot;: &quot;P.O. BOX 800&quot;,
+            &quot;street2&quot;: &quot;&quot;,
+            &quot;city&quot;: &quot;HERLONG&quot;,
+            &quot;county&quot;: &quot;LASSEN&quot;,
+            &quot;state&quot;: &quot;CA&quot;,
+            &quot;zipCode&quot;: &quot;96113&quot;,
+            &quot;areaCode&quot;: &quot;&quot;,
+            &quot;number&quot;: &quot;&quot;,
+            &quot;faxAreaCode&quot;: &quot;&quot;,
+            &quot;faxNumber&quot;: &quot;&quot;,
+            &quot;faclTypeDescription&quot;: &quot;Federal Correctional Institution&quot;
+        },
+        {
+            &quot;name&quot;: &quot;HERLONG FCI&quot;,
+            &quot;code&quot;: &quot;HER&quot;,
+            &quot;addressType&quot;: &quot;1&quot;,
+            &quot;addressTypeName&quot;: &quot;Physical Address&quot;,
+            &quot;region&quot;: &quot;WXR&quot;,
+            &quot;street&quot;: &quot;741-925 ACCESS ROAD A-25&quot;,
+            &quot;street2&quot;: &quot;&quot;,
+            &quot;city&quot;: &quot;HERLONG&quot;,
+            &quot;county&quot;: &quot;LASSEN&quot;,
+            &quot;state&quot;: &quot;CA&quot;,
+            &quot;zipCode&quot;: &quot;96113&quot;,
+            &quot;areaCode&quot;: &quot;530&quot;,
+            &quot;number&quot;: &quot;827-8000&quot;,
+            &quot;faxAreaCode&quot;: &quot;530&quot;,
+            &quot;faxNumber&quot;: &quot;827-8024&quot;,
+            &quot;faclTypeDescription&quot;: &quot;Federal Correctional Institution&quot;
+        },
+        {
+            &quot;name&quot;: &quot;HERLONG FCI&quot;,
+            &quot;code&quot;: &quot;HER&quot;,
+            &quot;addressType&quot;: &quot;5&quot;,
+            &quot;addressTypeName&quot;: &quot;Shipping&quot;,
+            &quot;region&quot;: &quot;WXR&quot;,
+            &quot;street&quot;: &quot;741-925 ACCESS ROAD A-25&quot;,
+            &quot;street2&quot;: &quot;&quot;,
+            &quot;city&quot;: &quot;HERLONG&quot;,
+            &quot;county&quot;: &quot;LASSEN&quot;,
+            &quot;state&quot;: &quot;CA&quot;,
+            &quot;zipCode&quot;: &quot;96113&quot;,
+            &quot;areaCode&quot;: &quot;&quot;,
+            &quot;number&quot;: &quot;&quot;,
+            &quot;faxAreaCode&quot;: &quot;&quot;,
+            &quot;faxNumber&quot;: &quot;&quot;,
+            &quot;faclTypeDescription&quot;: &quot;Federal Correctional Institution&quot;
+        },
+        {
+            &quot;name&quot;: &quot;HERLONG FCI&quot;,
+            &quot;code&quot;: &quot;HER&quot;,
+            &quot;addressType&quot;: &quot;2&quot;,
+            &quot;addressTypeName&quot;: &quot;Staff Mail&quot;,
+            &quot;region&quot;: &quot;WXR&quot;,
+            &quot;street&quot;: &quot;P.O. BOX 900&quot;,
+            &quot;street2&quot;: &quot;&quot;,
+            &quot;city&quot;: &quot;HERLONG&quot;,
+            &quot;county&quot;: &quot;LASSEN&quot;,
+            &quot;state&quot;: &quot;CA&quot;,
+            &quot;zipCode&quot;: &quot;96113&quot;,
+            &quot;areaCode&quot;: &quot;&quot;,
+            &quot;number&quot;: &quot;&quot;,
+            &quot;faxAreaCode&quot;: &quot;&quot;,
+            &quot;faxNumber&quot;: &quot;&quot;,
+            &quot;faclTypeDescription&quot;: &quot;Federal Correctional Institution&quot;
+        }
+    ],
+    &quot;Locations&quot;: [
+        {
+            &quot;code&quot;: &quot;HER&quot;,
+            &quot;name&quot;: &quot;Herlong&quot;,
+            &quot;nameTitle&quot;: &quot;FCI Herlong&quot;,
+            &quot;nameDisplay&quot;: &quot;Herlong FCI&quot;,
+            &quot;complexCode&quot;: &quot;&quot;,
+            &quot;type&quot;: &quot;FCI&quot;,
+            &quot;securityLevel&quot;: &quot;Medium&quot;,
+            &quot;region&quot;: &quot;Western Region&quot;,
+            &quot;latitude&quot;: &quot;40.14406729825646&quot;,
+            &quot;longitude&quot;: &quot;-120.16358613967896&quot;,
+            &quot;url&quot;: &quot;/locations/institutions/her/&quot;,
+            &quot;timeZone&quot;: &quot;P&quot;,
+            &quot;address&quot;: &quot;741-925 ACCESS ROAD A-25&quot;,
+            &quot;city&quot;: &quot;HERLONG&quot;,
+            &quot;state&quot;: &quot;CA&quot;,
+            &quot;zipCode&quot;: &quot;96113&quot;,
+            &quot;phoneNumber&quot;: &quot;530-827-8000&quot;,
+            &quot;contactEmail&quot;: &quot;HER/ExecAssistant@bop.gov&quot;,
+            &quot;locationtype&quot;: &quot;inst&quot;,
+            &quot;privateFacl&quot;: &quot;f&quot;,
+            &quot;gender&quot;: &quot;male&quot;,
+            &quot;special&quot;: false,
+            &quot;faclTypeDescription&quot;: &quot;Federal Correctional Institution&quot;,
+            &quot;hasCamp&quot;: true,
+            &quot;imageNormal&quot;: &quot;/locations/institutions/her/HER_lrg.jpg&quot;,
+            &quot;imageSmall&quot;: &quot;/locations/institutions/her/HER_sm.jpg&quot;,
+            &quot;hasFsl&quot;: false,
+            &quot;hasFdc&quot;: false
+        }
+    ],
+    &quot;Popreport&quot;: {
+        &quot;TOTALPOPULATION&quot;: 1617,
+        &quot;CCMTOTAL_FORMATTED&quot;: &quot;0&quot;,
+        &quot;TOTALPOPULATION_FORMATTED&quot;: &quot;1,617&quot;,
+        &quot;CCM&quot;: [],
+        &quot;CCMTOTAL&quot;: 0,
+        &quot;PRIVATETOTAL_FORMATTED&quot;: &quot;0&quot;,
+        &quot;Notice&quot;: &quot;Output based on search request&quot;,
+        &quot;PRIVATE&quot;: [],
+        &quot;BOPTOTAL&quot;: 1617,
+        &quot;BOP&quot;: [
+            {
+                &quot;code&quot;: &quot;HER&quot;,
+                &quot;Name&quot;: &quot;HERLONG FCI&quot;,
+                &quot;state&quot;: &quot;CA&quot;,
+                &quot;popCount&quot;: 1491,
+                &quot;groupDescription&quot;: &quot;HERLONG FCI&quot;,
+                &quot;sortKey&quot;: &quot;0001&quot;,
+                &quot;sortNameKey&quot;: &quot;HERLONG FCI0000&quot;,
+                &quot;sortpzapSequence&quot;: &quot;0000&quot;,
+                &quot;indentationIndicator&quot;: &quot;N&quot;,
+                &quot;recordtype&quot;: &quot;T&quot;
+            },
+            {
+                &quot;code&quot;: &quot;HER&quot;,
+                &quot;Name&quot;: &quot;HERLONG-CAMP&quot;,
+                &quot;state&quot;: &quot;CA&quot;,
+                &quot;popCount&quot;: 126,
+                &quot;groupDescription&quot;: &quot;HERLONG FCI&quot;,
+                &quot;sortKey&quot;: &quot;0001&quot;,
+                &quot;sortNameKey&quot;: &quot;HERLONG FCI0001&quot;,
+                &quot;sortpzapSequence&quot;: &quot;0001&quot;,
+                &quot;indentationIndicator&quot;: &quot;Y&quot;,
+                &quot;recordtype&quot;: &quot;T&quot;
+            }
+        ],
+        &quot;BOPTOTAL_FORMATTED&quot;: &quot;1,617&quot;,
+        &quot;DATEMODIFIED&quot;: &quot;March 20, 2014&quot;,
+        &quot;PRIVATETOTAL&quot;: 0
+    },
+    &quot;Lockdown&quot;: [],
+    &quot;FormToken&quot;: &quot;pub32364info&quot;
+}</code></pre>
+
+    
+      <h2 class="page-header" id="locations">Locations</h2>
+      <p>Returns an Index of BOP Facilities</p>
+<h3 id="endpoint-">Endpoint:</h3>
+<pre> http://www.bop.gov/PublicInfo/execute/locations/?todo=query&output=json </pre>
+
+<p>Returns a blank Message and Locations object which contains an array of Location objects - a very shortened version of the Locations object above.</p>
+<p>I haven&#39;t found any parameters used to sort, filter, limit the index yet.</p>
+<h3 id="example-">Example:</h3>
+<pre> http://www.bop.gov/PublicInfo/execute/locations/?todo=query&output=json </pre>
+
+<h4 id="returns-">Returns:</h4>
+<pre><code class="language-JSON">
+{
+    &quot;Messages&quot;: {},
+    &quot;Locations&quot;: [
+        {
+            &quot;code&quot;: &quot;ACC&quot;,
+            &quot;name&quot;: &quot;Adams County&quot;,
+            &quot;nameTitle&quot;: &quot;CI Adams County&quot;,
+            &quot;nameDisplay&quot;: &quot;Adams County CI&quot;,
+            &quot;complexCode&quot;: &quot;&quot;,
+            &quot;type&quot;: &quot;CI&quot;,
+            &quot;securityLevel&quot;: &quot;Low&quot;,
+            &quot;region&quot;: &quot;Southeast Region&quot;,
+            &quot;latitude&quot;: &quot;31.555353139426984&quot;,
+            &quot;longitude&quot;: &quot;-91.21853828430176&quot;,
+            &quot;url&quot;: &quot;/locations/ci/acc/&quot;,
+            &quot;timeZone&quot;: &quot;C&quot;,
+            &quot;address&quot;: &quot;20 HOBO FORK ROAD&quot;,
+            &quot;city&quot;: &quot;NATCHEZ&quot;,
+            &quot;state&quot;: &quot;MS&quot;,
+            &quot;zipCode&quot;: &quot;39120&quot;,
+            &quot;phoneNumber&quot;: &quot;601-304-2500&quot;,
+            &quot;contactEmail&quot;: &quot;ACC/General@bop.gov&quot;,
+            &quot;locationtype&quot;: &quot;inst&quot;,
+            &quot;privateFacl&quot;: &quot;t&quot;,
+            &quot;gender&quot;: &quot;male&quot;,
+            &quot;special&quot;: false,
+            &quot;faclTypeDescription&quot;: &quot;Correctional Institution&quot;,
+            &quot;hasCamp&quot;: false,
+            &quot;imageNormal&quot;: &quot;&quot;,
+            &quot;imageSmall&quot;: &quot;&quot;,
+            &quot;hasFsl&quot;: false,
+            &quot;hasFdc&quot;: false
+        },
+        {
+            &quot;code&quot;: &quot;ALD&quot;,
+            &quot;name&quot;: &quot;Alderson&quot;,
+            &quot;nameTitle&quot;: &quot;FPC Alderson&quot;,
+            &quot;nameDisplay&quot;: &quot;Alderson FPC&quot;,
+            &quot;complexCode&quot;: &quot;&quot;,
+            &quot;type&quot;: &quot;FPC&quot;,
+            &quot;securityLevel&quot;: &quot;Minimum&quot;,
+            &quot;region&quot;: &quot;Mid-Atlantic Region&quot;,
+            &quot;latitude&quot;: &quot;37.725277605059226&quot;,
+            &quot;longitude&quot;: &quot;-80.65844535827637&quot;,
+            &quot;url&quot;: &quot;/locations/institutions/ald/&quot;,
+            &quot;timeZone&quot;: &quot;E&quot;,
+            &quot;address&quot;: &quot;GLEN RAY RD. BOX A&quot;,
+            &quot;city&quot;: &quot;ALDERSON&quot;,
+            &quot;state&quot;: &quot;WV&quot;,
+            &quot;zipCode&quot;: &quot;24910&quot;,
+            &quot;phoneNumber&quot;: &quot;304-445-3300&quot;,
+            &quot;contactEmail&quot;: &quot;ALD/ExecAssistant@bop.gov&quot;,
+            &quot;locationtype&quot;: &quot;inst&quot;,
+            &quot;privateFacl&quot;: &quot;f&quot;,
+            &quot;gender&quot;: &quot;female&quot;,
+            &quot;special&quot;: false,
+            &quot;faclTypeDescription&quot;: &quot;Federal Prison Camp&quot;,
+            &quot;hasCamp&quot;: false,
+            &quot;imageNormal&quot;: &quot;/locations/institutions/ald/ALD_lrg.jpg&quot;,
+            &quot;imageSmall&quot;: &quot;/locations/institutions/ald/ALD_sm.jpg&quot;,
+            &quot;hasFsl&quot;: false,
+            &quot;hasFdc&quot;: false
+        },
+        [...]
+}</code></pre>
+
+    
+      <h2 class="page-header" id="inmateloc">Inmate Locator</h2>
+      <h3 id="endpoint-">Endpoint:</h3>
+<pre> http://www.bop.gov/PublicInfo/execute/inmateloc</pre>
+
+
+<p>This one has great potential, but is still proving a bit difficult to get to work.  I believe it requires posting a json object to a form. We need to dig around the bop.gov JavaScripts a bit to understand how this is being used, and what return data we can get.</p>
+<h3 id="example-">Example:</h3>
+<pre> http://www.bop.gov/PublicInfo/execute/inmateloc?success=c&error=g&data=&todo=query&output=json </pre>
+
+<p>Returns:</p>
+<pre><code class="language-JSON">{
+    &quot;Exceptions&quot;: {
+        &quot;FriendlyMessage&quot;: &quot;Validation failed, no valid field values&quot;,
+        &quot;ExceptionMessage&quot;: &quot;Validation failed, no valid field values&quot;
+    },
+    &quot;ForwardRequested&quot;: &quot;true&quot;,
+    &quot;ForwardLocation&quot;: &quot;/inmateloc/index.jsp&quot;,
+    &quot;FormToken&quot;: &quot;pub29284info&quot;
+}</code></pre>
+
+    
+      <h2 class="page-header" id="othernotes">Other Notes</h2>
+      <h3 id="pdf-resource-urls">PDF Resource URLS</h3>
+<p>Though every facility does not necessarily have these documents, they can be accessed from here:</p>
+<ul>
+<li>Visiting Hours  <code> <a href="http://www.bop.gov/locations/institutions/[code]/[CODE]_visit_hours.pdf">http://www.bop.gov/locations/institutions/[code]/[CODE]_visit_hours.pdf</a> </code></li>
+<li>Legal Visting Guide <code> <a href="http://www.bop.gov/locations/institutions/[code]/[CODE]_legal_visiting_guide.pdf">http://www.bop.gov/locations/institutions/[code]/[CODE]_legal_visiting_guide.pdf</a> </code></li>
+<li>Admissions &amp; Orientation Handbook <code> <a href="http://www.bop.gov/locations/institutions/[code]/[CODE]_aohandbook.pdf">http://www.bop.gov/locations/institutions/[code]/[CODE]_aohandbook.pdf</a></code></li>
+<li>Commissary List <code> <a href="http://www.bop.gov/locations/institutions/[code]/[CODE]_CommList.pdf">http://www.bop.gov/locations/institutions/[code]/[CODE]_CommList.pdf</a></code></li>
+</ul>
+
+    
+    </div>
+  </div>
+</div>
+
+
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.0/languages/json.min.js"></script>
+  </body>
+</html>
