@@ -39,6 +39,10 @@
         </li>
         
         <li>
+          <a href="ideas.html">Ideas</a>
+        </li>
+        
+        <li>
           <a href="index.html">Home</a>
         </li>
         
@@ -81,6 +85,7 @@
       <h2 class="page-header" id="intro">Introduction</h2>
       <p>Keep in mind, I&#39;m still not sure whether this API is truly public or not.  I&#39;m just going to document it, so please use at your own risk. These docs are merely an experiment in documenting an API from afar, so it&#39;s kind of a fun reverse engineering project.</p>
 <p>I can only hope you use it for good, and not to profit further from prisoners or the prison system, but it&#39;s not up to me to tell you how to use this - or whether you should at all!</p>
+<p>This API is used by their website bop.gov.  Thus much of the location object properties and such are geared towards use by a website.  I&#39;ve discovered endpoints and parameters by digging around in the javascripts on bop.gov.  I suggest looking for more!</p>
 
     
       <h2 class="page-header" id="disclaimer">Disclaimer</h2>
@@ -380,6 +385,52 @@
 
 <p>Returns a blank Message and Locations object which contains an array of Location objects - a very shortened version of the Locations object above.</p>
 <p>I haven&#39;t found any parameters used to sort, filter, limit the index yet.</p>
+<h3 id="object-properties">Object Properties</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Example Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>ACC</td>
+<td>The Unique ID for this facility - in this case all caps (note that when you return all data, it&#39;s in all caps)</td>
+</tr>
+<tr>
+<td>url</td>
+<td>/locations/ci/acc</td>
+<td>Relative path from www.bop.gov</td>
+</tr>
+<tr>
+<td>type</td>
+<td>CI</td>
+<td>Bop codes for facility types. There should be an index of these somewhere... see: facylTypeDescriptoion</td>
+</tr>
+<tr>
+<td>faclTypeDescription</td>
+<td>Correctional Institution</td>
+<td>The human-readable facility type name</td>
+</tr>
+<tr>
+<td>locationtype</td>
+</tr>
+<tr>
+<td>privateFacl</td>
+<td>t/f</td>
+<td>Apparently a faux boolean for whether or not this facility is private</td>
+</tr>
+</tbody>
+</table>
+<h4 id="notes-">Notes:</h4>
+<ul>
+<li>Not all properties are proper camel case</li>
+<li>Some properties will vanish from the object rather than returning NULL</li>
+<li>Location objects from the index return a primary address. This address is NOT the same as for sending inmates mail or parcels, nor is it the address for prison camps, either.  More specific addresses can be fetched from phyLoc.</li>
+</ul>
 <h3 id="example-">Example:</h3>
 <pre> http://www.bop.gov/PublicInfo/execute/locations/?todo=query&output=json </pre>
 
@@ -481,6 +532,11 @@
 <li>Legal Visting Guide <code> <a href="http://www.bop.gov/locations/institutions/[code]/[CODE]_legal_visiting_guide.pdf">http://www.bop.gov/locations/institutions/[code]/[CODE]_legal_visiting_guide.pdf</a> </code></li>
 <li>Admissions &amp; Orientation Handbook <code> <a href="http://www.bop.gov/locations/institutions/[code]/[CODE]_aohandbook.pdf">http://www.bop.gov/locations/institutions/[code]/[CODE]_aohandbook.pdf</a></code></li>
 <li>Commissary List <code> <a href="http://www.bop.gov/locations/institutions/[code]/[CODE]_CommList.pdf">http://www.bop.gov/locations/institutions/[code]/[CODE]_CommList.pdf</a></code></li>
+</ul>
+<h3 id="security">Security</h3>
+<ul>
+<li>www.bop.gov does not support ssl - for the website or the API. Boo</li>
+<li>no authentication is necessary</li>
 </ul>
 
     
