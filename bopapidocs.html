@@ -508,19 +508,56 @@
 <pre> http://www.bop.gov/PublicInfo/execute/inmateloc</pre>
 
 
-<p>This one has great potential, but is still proving a bit difficult to get to work.  I believe it requires posting a json object to a form. We need to dig around the bop.gov JavaScripts a bit to understand how this is being used, and what return data we can get.</p>
+<p>Got this one working! finally!  It was remarkably easy, just had to serialize form values to see what was happening.</p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>inmateNumType</td>
+<td>IRN</td>
+<td>The number type.  Required for num search.</td>
+</tr>
+<tr>
+<td>inmateNum</td>
+<td>57978-060</td>
+<td>The inmate number. Required for num search.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="example-">Example:</h3>
-<pre> http://www.bop.gov/PublicInfo/execute/inmateloc?success=c&error=g&data=&todo=query&output=json </pre>
+<pre> http://www.bop.gov/PublicInfo/execute/inmateloc?todo=query&output=json&inmateNumType=IRN&inmateNum=57978-060 </pre>
 
 <p>Returns:</p>
 <pre><code class="language-JSON">{
-    &quot;Exceptions&quot;: {
-        &quot;FriendlyMessage&quot;: &quot;Validation failed, no valid field values&quot;,
-        &quot;ExceptionMessage&quot;: &quot;Validation failed, no valid field values&quot;
-    },
-    &quot;ForwardRequested&quot;: &quot;true&quot;,
-    &quot;ForwardLocation&quot;: &quot;/inmateloc/index.jsp&quot;,
-    &quot;FormToken&quot;: &quot;pub29284info&quot;
+    &quot;InmateLocator&quot;: [
+        {
+            &quot;nameLast&quot;: &quot;STEVENS&quot;,
+            &quot;nameFirst&quot;: &quot;CONNOR&quot;,
+            &quot;nameMiddle&quot;: &quot;C&quot;,
+            &quot;sex&quot;: &quot;Male&quot;,
+            &quot;race&quot;: &quot;White&quot;,
+            &quot;age&quot;: &quot;22&quot;,
+            &quot;inmateNum&quot;: &quot;57978-060&quot;,
+            &quot;inmateNumType&quot;: &quot;&quot;,
+            &quot;releaseCode&quot;: &quot;&quot;,
+            &quot;faclCode&quot;: &quot;MCK&quot;,
+            &quot;faclName&quot;: &quot;McKean&quot;,
+            &quot;faclType&quot;: &quot;FCI&quot;,
+            &quot;faclURL&quot;: &quot;/locations/institutions/mck/&quot;,
+            &quot;projRelDate&quot;: &quot;05/15/2019&quot;,
+            &quot;actRelDate&quot;: &quot;&quot;,
+            &quot;suffix&quot;: &quot;&quot;
+        }
+    ],
+    &quot;Captcha&quot;: false,
+    &quot;Messages&quot;: {},
+    &quot;FormToken&quot;: &quot;pub29342info&quot;
 }</code></pre>
 
     
